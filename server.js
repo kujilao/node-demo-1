@@ -4,11 +4,11 @@ var url = require("url");
 var port = process.argv[2];
 
 if (!port){
-    console.log("请先指定端口")；
+    console.log("请先指定端口");
     process.exit(1);
 }
 
-var server = http.createServer(function(request,reponse) {
+var server = http.createServer(function(request,response) {
     var parsedUrl = url.parse(request.url,true);
     var pathWithQuery = request.url;
     var queryString = "";
@@ -23,13 +23,13 @@ console.log("有请求发送过来：" + pathWithQuery);
 
 if (path === "/"){
     response.statusCode = 200;
-    reponse.setHeader("Content-Type","text/html;charset=utf-8");
+    response.setHeader("Content-Type","text/html;charset=utf-8");
     response.write(`
-    <!DOCYTPE html>
-    <linl rel="stylesheet" href="/style.css">
+    <!DOCTYPE html>
+    <link rel="stylesheet" href="/style.css">
     <h1>yes</h1>
     `);
-reponse.end();
+response.end();
 }else if (path === "/style.css"){
     response.statusCode = 200;
     response.setHeader("Content-Type","text/css;charset=utf-8");
